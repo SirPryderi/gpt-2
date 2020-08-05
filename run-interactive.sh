@@ -8,7 +8,7 @@ echo "[@] Jettison old fine-tuned model"
 if [ -d "./models/$RUN_NAME" ]; then rm -Rf "./models/$RUN_NAME"; fi
 
 echo "[@] Create new fine-tuned model"
-mkdir ./models/"$RUN_NAME"
+mkdir "./models/$RUN_NAME"
 ln "./models/$MODEL_NAME/encoder.json" "./models/$RUN_NAME"/
 ln "./models/$MODEL_NAME/hparams.json" "./models/$RUN_NAME"/
 ln "./models/$MODEL_NAME/vocab.bpe" "./models/$RUN_NAME"/
