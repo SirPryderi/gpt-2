@@ -12,10 +12,11 @@ mkdir "./models/$RUN_NAME"
 ln "./models/$MODEL_NAME/encoder.json" "./models/$RUN_NAME"/
 ln "./models/$MODEL_NAME/hparams.json" "./models/$RUN_NAME"/
 ln "./models/$MODEL_NAME/vocab.bpe" "./models/$RUN_NAME"/
-shopt -s globstar
-cp "./checkpoint/$RUN_NAME/model-*" "./models/$RUN_NAME"/
+latest=$(<./checkpoint/$RUN_NAME/counter) 
+cp "./checkpoint/$RUN_NAME/model-$latest.data-00000-of-00001" "./models/$RUN_NAME"/
+cp "./checkpoint/$RUN_NAME/model-$latest.index" "./models/$RUN_NAME"/
+cp "./checkpoint/$RUN_NAME/model-$latest.meta" "./models/$RUN_NAME"/
 cp "./checkpoint/$RUN_NAME/checkpoint" "./models/$RUN_NAME"/
-ls "./models/$RUN_NAME" -l
 
 echo "[@] Start interactive session"
 python3 ./src/interactive_conditional_samples.py \
